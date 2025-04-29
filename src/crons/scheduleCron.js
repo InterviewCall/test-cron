@@ -14,14 +14,14 @@ const job = cron.schedule('* * * * *', async () => {
         const todayStart = startOfToday();
         const todayEnd = endOfToday();
 
-        const todayStartUtc = fromZonedTime(todayStart, 'Asia/Kolkata');  // Corrected function
-        const todayEndUtc = fromZonedTime(todayEnd, 'Asia/Kolkata');
+        // const todayStartUtc = fromZonedTime(todayStart, 'Asia/Kolkata');  // Corrected function
+        // const todayEndUtc = fromZonedTime(todayEnd, 'Asia/Kolkata');
 
         console.log('start', todayStart);
         console.log('end', todayEnd);
         console.log('now', now);
 
-        await scheduleService.updateTestStatus(todayStartUtc, todayEndUtc, now);
+        await scheduleService.updateTestStatus(todayStart, todayEnd, now);
     } catch (error) {
         console.log(error);
     }
