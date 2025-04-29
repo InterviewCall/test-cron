@@ -3,9 +3,9 @@ class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    async updateTestStatus(todayStart, todayEnd, currentTime) {
+    async updateTestStatus(currentTime) {
         try {
-            await this.scheduleRepository.updateTestStatus(todayStart, todayEnd, currentTime);
+            await this.scheduleRepository.updateTestStatus(currentTime);
         } catch (error) {
             throw error;
         }

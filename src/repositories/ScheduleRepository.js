@@ -5,10 +5,9 @@ class ScheduleRepository {
         this.scheduleModel = ScheduleModel;
     }
 
-    async updateTestStatus(todayStart, todayEnd, currentTime) {
+    async updateTestStatus(currentTime) {
         await this.scheduleModel.updateMany({
             testStatus: { $in: ['Invited', 'In-Progress'] },
-            // dateOfTest: { $gte: todayStart, $lt: todayEnd },
             endTime: { $lt: currentTime }
         }, {
             $set: { testStatus: 'Expired' }
