@@ -8,7 +8,6 @@ const scheduleService = new ScheduleService(new ScheduleRepository());
 const job = cron.schedule('* * * * *', async () => {
     try {
         const now = new Date();
-        console.log('now', now);
         await scheduleService.updateTestStatus(now);
     } catch (error) {
         console.log(error);
