@@ -1,6 +1,4 @@
 const cron = require('node-cron');
-const { startOfToday, endOfToday } = require('date-fns');
-const { toZonedTime, fromZonedTime } = require('date-fns-tz');
 
 const { ScheduleRepository } = require('../repositories');
 const { ScheduleService } = require('../services');
