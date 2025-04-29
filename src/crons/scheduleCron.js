@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 const { startOfToday, endOfToday } = require('date-fns');
-const { toZonedTime } = require('date-fns-tz');
+const { toZonedTime, fromZonedTime } = require('date-fns-tz');
 
 const { ScheduleRepository } = require('../repositories');
 const { ScheduleService } = require('../services');
@@ -14,7 +14,14 @@ const job = cron.schedule('* * * * *', async () => {
         const todayStart = startOfToday(zonedTime);
         const todayEnd = endOfToday(zonedTime);
 
-        await scheduleService.updateTestStatus(todayStart, todayEnd, now);
+        const todayStartUtc = fromZonedTime(todayStart, 'Asia/Kolkata');  // Corrected function
+        const todayEndUtc = fromZonedTime(todayEnd, 'Asia/Kolkata');
+
+        console.log('start', todayStart);
+        console.log('end', todayEnd);
+        console.log('now', zonedTime);
+
+        await scheduleService.updateTestStatus(todayStartUtc, todayEndUtc, zonedTime);
     } catch (error) {
         console.log(error);
     }
